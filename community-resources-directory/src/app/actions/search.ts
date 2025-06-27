@@ -1,19 +1,20 @@
 "use server";
 import { Resource } from '@/components/resource-results/resource-results';
 import IPLocate from 'node-iplocate';
-//import { revalidatePath } from 'next/cache';
-//import { useRouter, useSearchParams } from 'next/navigation';
-import resources from '../../lib/resources.json';
+import staticResources from '../../lib/resources.json';
 import { calculateDistance } from '@/lib/utils';
 
 const ipLocateClient = new IPLocate('5f26d527a3359d4ac59b389631c5384e');
 
+// TODO add UI for selecting number of results per page
+// TODO move data to a DB and replace filter logic with SQL calls
+const pageSize=10;
 
-export async function searchResources(searchInput:string, filters:string): Promise<Resource[]> {
+export async function searchResources(searchInput:string, category:string, page:number): Promise<Resource[]> {
     const locationInfo:any = await ipLocateClient.lookupSelf();
-    const returnResources: Resource[] = <Resource[]>resources.resources.filter(i => {
+    const resources: Resource[] = <Resource[]>staticResources.resources.filter(i => {
         let match = false;
-        if (searchInput || filters) {
+        if (searchInput || category) {
             if (searchInput) {
                 if(searchInput && (i.name?.toLowerCase().includes(searchInput) || i.description?.toLowerCase().includes(searchInput))) {
                     match = true;
@@ -23,22 +24,29 @@ export async function searchResources(searchInput:string, filters:string): Promi
                         if (s.toLowerCase().includes(searchInput)) {
                             match = true;
                         }
-                    })
+                    });
                 }
-                if(filters && i.category?.toLowerCase() !== filters) {
-                    match = false
+                if(category && i.category?.toLowerCase() !== category) {
+                    match = false;
                 }
-            } else if(filters && i.category?.toLowerCase() === filters) {
-                match = true
+            } else if(category && i.category?.toLowerCase() === category) {
+                match = true;
             }
         } else {
             match = true;
         }
         return match;
     }, []);
-    //TODO add pagination an limit results;
-    
 
+    let returnResources: Resource[];
+    if (page - 1 > (resources.length / pageSize)) {
+        return [];
+    }
+    else if (resources.length > pageSize * (page-1)) {
+        returnResources = resources.slice((page - 1) * pageSize, page * pageSize);
+    } else {
+        returnResources = resources;
+    }
     return returnResources.map(r => ({
         ...r,
         distance: (r?.coordinates && r?.coordinates.lat && r.coordinates.lng) ? calculateDistance(locationInfo.latitude, locationInfo.longitude, r.coordinates?.lat, r.coordinates?.lng) : ''
@@ -46,7 +54,7 @@ export async function searchResources(searchInput:string, filters:string): Promi
 }
 
 export async function getCategories(): Promise<string[]> {
-    const categories: string[] = resources.resources.reduce((a, c) => {
+    const categories: string[] = staticResources.resources.reduce((a, c) => {
         if (c.category != '' && !a.includes(c.category)) {
             a.push(c.category);
         }

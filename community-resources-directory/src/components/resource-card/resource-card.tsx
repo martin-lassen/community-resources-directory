@@ -47,7 +47,7 @@ const ResourceCard: React.FC<Resource> = ({
                     </div>
                 )}
                 {languages_supported && (
-                    <div>
+                    <div className={styles.list}>
                         Supported Languages:&nbsp;
                         {
                             languages_supported && languages_supported.map((l,i)=>
@@ -59,13 +59,13 @@ const ResourceCard: React.FC<Resource> = ({
                     <div className={styles.tags}><span>Services:</span>
                         {
                             services && services.map(i => (
-                                <span className={styles.tag}>{i}</span>
+                                <span className={styles.tag} key={i}>{i}</span>
                             ))
                         }
                     </div>
                 )}
             </div>
-            <div>
+            <div className={styles.side}>
                 {hours && (<div className={styles.iconLink}>
                     <span><IconTime /> {hours}</span>
                 </div>)}

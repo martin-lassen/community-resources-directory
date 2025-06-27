@@ -1,10 +1,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
   --color-primary: #00A499;
   --color-secondary: #ae623f;
   --color-tertiary: #76766E;
   --color-active: #48483F;
+
   --size-xx-small: 3px;
   --size-x-small: 5px;
   --size-small: 8px;
@@ -20,15 +22,6 @@
 
   --shadow: 0.00px 1.00px 30px 0px rgba(214,215,226,0.3);
 }
-
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-*/
 
 html,
 body {
@@ -53,15 +46,6 @@ body {
 
 a {
   color: var(--color-secondary);
-  /*text-decoration: none;*/
-}
-
-
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
 
 label {
@@ -78,7 +62,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding-right: var(--size-x-large);
+  padding: 10px var(--size-x-large) var(--size-small) var(--size-regular);
   display: inline-block;
 }
 .select-container {
@@ -113,7 +97,6 @@ select {
   pointer-events: none;
   display: inline-block;
 }
-
 
 button {
   background-color: var(--color-primary);

@@ -1,12 +1,22 @@
 .searchForm {
     width: 100%;
 }
+.row {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        gap: var(--size-xx-large);
+        flex-direction: row;
+    }
+}
 .container {
     display: flex;
     justify-content: stretch;
     width: 100%;
     gap: var(--size-regular);
     margin-bottom: var(--size-large);
+    @media screen and (min-width: 768px) {
+        margin-bottom: unset;
+    }
 }
 .input {
     flex-grow: 1;

@@ -38,6 +38,9 @@ const ResourceResults: React.FC<ResourcesList> = ({ resources }) => {
                     <ResourceCard {...item} key={item.id}/>
                 ))
             }
+            {
+                // TODO add in pagination UI
+            }
         </div>
     );
 };

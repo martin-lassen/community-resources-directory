@@ -1,0 +1,19 @@
+.searchForm {
+    width: 100%;
+}
+.container {
+    display: flex;
+    justify-content: stretch;
+    width: 100%;
+    gap: var(--size-regular);
+    margin-bottom: var(--size-large);
+}
+.input {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 600px;
+}
+.container button {
+    flex-grow: 0;
+    flex-shrink: 0;
+}

@@ -1,0 +1,126 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-primary: #00A499;
+  --color-secondary: #ae623f;
+  --color-tertiary: #76766E;
+  --color-active: #48483F;
+  --size-xx-small: 3px;
+  --size-x-small: 5px;
+  --size-small: 8px;
+  --size-medium: 12px;
+  --size-regular: 16px;
+  --size-x-regular: 20px;
+  --size-large: 24px;
+  --size-x-large: 32px;
+  --size-xx-large: 48px;
+  
+  --font-regular: var(--size-regular);
+  --font-large: var(--size-large);
+
+  --shadow: 0.00px 1.00px 30px 0px rgba(214,215,226,0.3);
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+*/
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--font-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--color-secondary);
+  /*text-decoration: none;*/
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  border:#76766E 1px solid;
+  border-radius: var(--size-x-small);
+  padding: var(--size-small) var(--size-regular);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: var(--size-x-large);
+  display: inline-block;
+}
+.select-container {
+  display: inline-block;
+  position: relative;
+}
+.select-container::after {
+  content: "";
+  position: absolute;
+  font-size: 0;
+  top: 50%;
+  right: var(--size-small);
+  transform: translateY(20%);
+  width: 0px;
+  height: 0px;
+  border: 5px solid transparent;
+  border-top: 5px solid #000;
+  pointer-events: none;
+  display: inline-block;
+}
+.select-container::before {
+  content: "";
+  font-size: 0;
+  position: absolute;
+  top: 50%;
+  right: var(--size-small);
+  transform: translateY(-110%);
+  width: 0px;
+  height: 0px;
+  border: 5px solid transparent;
+  border-bottom: 5px solid #000;
+  pointer-events: none;
+  display: inline-block;
+}
+
+
+button {
+  background-color: var(--color-primary);
+  border-radius: var(--size-x-small);
+  color: var(--background);
+  padding: var(--size-small) var(--size-regular);
+  border: none;
+  box-sizing: border-box;
+  font-size: var(--font-regular);
+}

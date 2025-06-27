@@ -5,7 +5,7 @@ import ResourceResults from '../components/resource-results/resource-results';
 import { Resource } from '../components/resource-results/resource-results';
 import { Suspense } from 'react';
 interface HomePageProps {
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<any> | undefined;
 }
 async function ResultsList(searchParams:any) {
   'use client'

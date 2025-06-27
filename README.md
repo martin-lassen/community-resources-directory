@@ -1,20 +1,6 @@
 # community-resources-directory
 This application is a sample created for housing connector.  It is a community resource directory built in next.js
 
-
-
-
-
-None selected
-
-Skip to content
-Using Gmail with screen readers
-
-Conversations
-49% of 202 GB used
-Terms · Privacy · Program Policies
-Last account activity: 2 minutes ago
-Details
 # Housing Connector - Community Resources Directory Assessment
 
 ## Overview
